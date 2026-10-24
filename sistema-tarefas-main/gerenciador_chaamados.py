@@ -1,14 +1,21 @@
-def cadastrar_tarefa(tarefas, titulo, descricao, prioridade, classe_tarefa):
-    nova_tarefa = classe_tarefa(titulo, descricao, prioridade)
-    tarefas.append(nova_tarefa)
-    return nova_tarefa
+class Tarefa:
+    def __init__(self, titulo, prioridade):
+        self.titulo = titulo
+        self.prioridade = prioridade
+        self.situacao = "Pendente"
+
+    def concluir(self):
+        self.situacao = "Concluída"
+
+    def resumo(self):
+        return f"{self.titulo} | {self.prioridade} | {self.situacao}"
 
 def listar_tarefas(tarefas):
-    if not tarefas:
-        print("Nenhuma tarefa cadastrada.")
-        return
-    for indice, tarefa in enumerate(tarefas, start=1):
-        print(f"{indice}. {tarefa.exibir_resumo()}")
+    for tarefa in tarefas:
+        print(tarefa.resumo())
 
-def filtrar_por_situacao(tarefas, situacao):
-    return [tarefa for tarefa in tarefas if tarefa.situacao == situacao]
+primeira = Tarefa("Revisar rotas", "Alta")
+segunda = Tarefa("Atualizar documentação", "Média")
+tarefas = [primeira, segunda]
+primeira.concluir()
+listar_tarefas(tarefas)
