@@ -1,12 +1,11 @@
-class Tarefa:
-    def __init__(self, titulo, descricao, prioridade):
-        self.titulo = titulo
-        self.descricao = descricao
-        self.prioridade = prioridade
-        self.situacao = "Pendente"
+titulo = input("Título: ")
+prioridade = int(input("Prioridade (1 a 5): "))
+prazo_horas = float(input("Prazo em horas: "))
+urgente = input("É urgente? (sim/nao): ") == "sim"
 
-    def concluir(self):
-        self.situacao = "Concluída"
+esforco_estimado = prazo_horas * 1.2
+prioritaria = prioridade >= 4 or urgente
 
-    def exibir_resumo(self):
-        return f"Título: {self.titulo} | Prioridade: {self.prioridade} | Situação: {self.situacao}"
+print(f"Tarefa: {titulo}")
+print(f"Esforço estimado: {esforco_estimado:.2f} horas")
+print(f"Prioritária: {prioritaria}")
